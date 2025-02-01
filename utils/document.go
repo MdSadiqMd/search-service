@@ -3,6 +3,7 @@ package utils
 import (
 	"compress/gzip"
 	"encoding/xml"
+	"io"
 	"os"
 )
 
@@ -20,14 +21,27 @@ func LoadDocuments(path string) ([]document, error) {
 	}
 	defer f.Close()
 
-	gz, err := gzip.NewReader(f)
-	if err != nil {
+	header := make([]byte, 2)
+	if _, err := f.Read(header); err != nil {
 		return nil, err
 	}
-	defer gz.Close()
+	if _, err := f.Seek(0, 0); err != nil {
+		return nil, err
+	}
 
-	dec := xml.NewDecoder(gz)
+	var reader io.Reader
+	if header[0] == 0x1f && header[1] == 0x8b {
+		gz, err := gzip.NewReader(f)
+		if err != nil {
+			return nil, err
+		}
+		defer gz.Close()
+		reader = gz
+	} else {
+		reader = f
+	}
 
+	dec := xml.NewDecoder(reader)
 	dump := struct {
 		Documents []document `xml:"doc"`
 	}{}
