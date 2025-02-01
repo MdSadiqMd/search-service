@@ -3,6 +3,7 @@
 ![image](https://github.com/user-attachments/assets/05c2498c-ed77-42d8-b958-0bf383ef8ca2)
 
 Can scale upto 10 Million Records
+You can find the dataset used for building this here https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-abstract1.xml.gz 
 
 Building Up:
 Golang already have string.contains() method but that will take around ~2 sec for 600k docs
