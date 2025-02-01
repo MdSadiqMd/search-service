@@ -1,6 +1,9 @@
 package utils
 
-import "strings"
+import (
+	"strings"
+	"unicode"
+)
 
 func tokenize(text string) []string {
 	return strings.FieldsFunc(text, func(r rune) bool {
@@ -9,6 +12,9 @@ func tokenize(text string) []string {
 }
 
 func analyze(text string) []string {
-	tokens:=tokenize(text)
-	tokens=
+	tokens := tokenize(text)
+	tokens = lowerCaseFilter(tokens)
+	tokens = stopWordsFilter(tokens)
+	tokens = stemmerFilter(tokens)
+	return tokens
 }
