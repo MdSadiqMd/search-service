@@ -4,6 +4,8 @@ import (
 	"flag"
 	"log"
 	"time"
+
+	utils "github.com/MdSadiqMd/search-service/utils"
 )
 
 func main() {
