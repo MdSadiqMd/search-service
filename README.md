@@ -2,7 +2,9 @@
 
 A high-performance document search engine written in Go, capable of scaling to 10 million records with sub-second query times.
 
+<!--
 <img src="https://github.com/user-attachments/assets/05c2498c-ed77-42d8-b958-0bf383ef8ca2" alt="Search Service Architecture" width="full" height="400">
+-->
 
 ## Features
 
